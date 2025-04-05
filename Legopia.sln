@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Legopia", "Legopia\Legopia.csproj", "{22DBD7D7-E491-A8F4-4D8C-CE10FDCB486D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{22DBD7D7-E491-A8F4-4D8C-CE10FDCB486D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22DBD7D7-E491-A8F4-4D8C-CE10FDCB486D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22DBD7D7-E491-A8F4-4D8C-CE10FDCB486D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22DBD7D7-E491-A8F4-4D8C-CE10FDCB486D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {95B316F4-DC53-4BAA-B502-6D97710F66D1}
+	EndGlobalSection
+EndGlobal
