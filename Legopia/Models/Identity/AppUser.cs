@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Legopia.Models.Entities;
 
 namespace Legopia.Models.Identity
 {
