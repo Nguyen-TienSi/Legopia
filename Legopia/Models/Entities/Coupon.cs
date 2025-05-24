@@ -1,23 +1,31 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Legopia.Models.Enums;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Legopia.Models.Entities
 {
-    public class Coupon
+    [Table("coupons")]
+    public class Coupon : BaseEntity
     {
-        public int Id { get; set; }
-
         [Required]
-        public string Code { get; set; } // Mã giảm giá (VD: "LEGO10")
-
-        public decimal? DiscountAmount { get; set; } // Giảm giá theo số tiền (VD: 50k)
-        public float? DiscountPercentage { get; set; } // Giảm giá theo % (VD: 10%)
-
-        public decimal? MinimumOrderAmount { get; set; } // Đơn hàng tối thiểu để áp dụng
-
-        public DateTime ExpirationDate { get; set; } // Hạn sử dụng
-        public bool IsActive { get; set; } = true; // Trạng thái có thể sử dụng không
-
-        public int? UsageLimit { get; set; } // Số lần sử dụng tối đa (null = không giới hạn)
-        public int UsedCount { get; set; } = 0; // Số lần đã sử dụng
+        [MaxLength(100)]
+        [Column("coupon_code")]
+        public string CouponCode { get; set; } = string.Empty;
+        [Column("discount_amount")]
+        public decimal? DiscountAmount { get; set; }
+        [Column("discount_percentage")]
+        public float? DiscountPercentage { get; set; }
+        [Column("minimum_order_amount")]
+        public decimal? MinimumOrderAmount { get; set; }
+        [Column("expiration_date")]
+        public DateTime ExpirationDate { get; set; }
+        [Column("coupon_status")]
+        public CouponStatus CouponStatus { get; set; }
+        [Column("usage_limit")]
+        public int? UsageLimit { get; set; }
+        [Column("used_count")]
+        public int UsedCount { get; set; } = 0;
+        // Many to many relationship
+        public ICollection<OrderCouponJoining> OrderCouponJoinings { get; set; } = [];
     }
 }

@@ -1,16 +1,17 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Legopia.Models.Entities
 {
-    public class Tag
+    [Table("tags")]
+    public class Tag : BaseEntity
     {
-        public int Id { get; set; }
-
         [Required]
         [MaxLength(50)]
-        public string Name { get; set; } // Tên thẻ (VD: "Lego", "Review", "Sản phẩm mới")
-
-        public ICollection<PostTag> PostTags { get; set; } = new List<PostTag>(); // Các bài viết có thẻ này
+        [Column("tag_name")]
+        public string TagName { get; set; } = string.Empty;
+        // Many to many relationship
+        public ICollection<PostTagJoining> PostTagJoinings { get; set; } = [];
     }
 }

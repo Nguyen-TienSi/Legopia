@@ -1,3 +1,5 @@
+using Legopia.Extensions;
+
 namespace Legopia
 {
     public class Program
@@ -8,6 +10,9 @@ namespace Legopia
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+            builder.Services.AddSqlServer(builder.Configuration);
+            builder.Services.AddApplicationServices();
 
             var app = builder.Build();
 

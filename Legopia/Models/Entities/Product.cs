@@ -3,31 +3,40 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Legopia.Models.Entities
 {
-    public class Product
+    [Table("products")]
+    public class Product : BaseEntity
     {
-        public int Id { get; set; }
-
         [Required]
-        public string Name { get; set; }
-
-        public string Description { get; set; }
-
+        [Column("product_name")]
+        public string ProductName { get; set; } = string.Empty;
+        [Column("short_description")]
+        public string ShortDescription { get; set; } = string.Empty;
+        [Column("description")]
+        public string Description { get; set; } = string.Empty;
         [Required]
+        [Column("price")]
         public decimal Price { get; set; }
+        [Column("discount_price")]
+        public decimal? DiscountPrice { get; set; }
+        [Column("discount_percentage")]
+        public float? DiscountPercentage { get; set; }
+        [Column("thumbnail_url")]
+        public string ThumbnailUrl { get; set; } = string.Empty;
+        [Column("stock")]
+        public int Stock { get; set; }
+        // One to many relationship
+        public ICollection<ProductReview> Reviews { get; set; } = [];
+        public ICollection<CartItem> CartItems { get; set; } = [];
+        public ICollection<OrderItem> OrderItems { get; set; } = [];
+        // Many to one relationship
+        [ForeignKey(nameof(ProductCategory))]
+        [Column("product_category_id")]
+        public int? ProductCategoryId { get; set; }
+        public ProductCategory? ProductCategory { get; set; }
+        // Many to many relationship
+        public ICollection<ProductImageJoining> ProductImageJoining { get; set; } = [];
 
-        public decimal? DiscountPrice { get; set; } // Giá sau khi giảm (nếu có)
-        public float? DiscountPercentage { get; set; } // % giảm giá (nếu có)
-
-        public string ThumbnailUrl { get; set; } // Ảnh đại diện
-
-        public int Stock { get; set; } // Số lượng tồn kho
-
-        public int CategoryId { get; set; }
-        public Category Category { get; set; }
-
-        public ICollection<ProductImage> ProductImages { get; set; } = new List<ProductImage>(); // Thư viện ảnh
-
-        [NotMapped] // Không lưu vào DB, chỉ hiển thị trên giao diện
+        [NotMapped]
         public decimal FinalPrice
         {
             get

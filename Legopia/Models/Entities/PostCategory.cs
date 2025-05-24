@@ -1,16 +1,17 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Legopia.Models.Entities
 {
-    public class PostCategory
+    [Table("post_categories")]
+    public class PostCategory : BaseEntity
     {
-        public int Id { get; set; }
-
         [Required]
         [MaxLength(100)]
-        public string Name { get; set; } // Tên danh mục
-
-        public ICollection<Post> Posts { get; set; } = new List<Post>(); // Các bài viết thuộc danh mục này
+        [Column("post_category_name")]
+        public string PostCategoryName { get; set; } = string.Empty;
+        // Many to one relationship
+        public ICollection<Post> Posts { get; set; } = [];
     }
 }
