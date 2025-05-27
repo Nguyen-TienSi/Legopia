@@ -6,6 +6,11 @@ namespace Legopia.Data
 {
     public class LegopiaDbContext : DbContext
     {
+        public LegopiaDbContext(DbContextOptions<LegopiaDbContext> options)
+            : base(options)
+        {
+        }
+
         public DbSet<Address> Addresses { get; set; }
         public DbSet<UserDetails> UserDetails { get; set; }
         public DbSet<UserRole> UserRoles { get; set; }

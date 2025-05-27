@@ -38,15 +38,15 @@
 
             <!-- Search Icon -->
             <div id="searchContainer" class="d-flex me-3">
-                <button id="searchIcon" class="btn btn-link p-0 focus-ring-0 shadow-none text-dark" >
-                    <i class="bi bi-search fs-5" ></i>
+                <button id="searchIcon" class="btn btn-link p-0 focus-ring-0 shadow-none text-dark">
+                    <i class="bi bi-search fs-5"></i>
                 </button>
                 <!-- Search Form -->
                 <form id="searchForm" class="d-none" style="width: 300px;" asp-controller="Products" asp-action="Search">
                     <div id="searchGroup" class="input-group border rounded-pill">
                         <button class="btn btn-link text-secondary focus-ring-0 shadow-none" type="submit">
-                            <i class="bi bi-search" ></i>
-                        </button> 
+                            <i class="bi bi-search"></i>
+                        </button>
                         <input id="searchInput" class="form-control border-0 focus-ring-0 shadow-none" type="search" name="query" placeholder="Search ..." aria-label="Search" autocomplete="off">
                         <button id="clearSearch" class="btn btn-link text-secondary focus-ring-0 shadow-none" type="button">
                             <i class="bi bi-x-lg"></i>
@@ -92,7 +92,7 @@
                         <i class="bi bi-cart3 fs-5"></i>
                         <span class="position-absolute top-0 start-70 fs-6">
                             (0)
-                        </span> 
+                        </span>
                     </a>
                 </li>
             </ul>
@@ -100,6 +100,7 @@
     </div>
 </header>
 
+<script src="~/js/header.js" asp-append-version="true"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         const searchIcon = document.getElementById('searchIcon');
@@ -108,7 +109,7 @@
         const clearSearch = document.getElementById('clearSearch');
         const searchInput = document.getElementById('searchInput');
         const searchGroup = document.getElementById('searchGroup');
-        
+
 
         // Show search form
         searchIcon.addEventListener('click', function () {

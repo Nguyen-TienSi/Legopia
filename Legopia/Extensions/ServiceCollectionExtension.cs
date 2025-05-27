@@ -46,7 +46,7 @@ namespace Legopia.Extensions
 
         public static IServiceCollection AddSqlServer(this IServiceCollection services, IConfiguration configuration)
         {
-            var connectionString = configuration.GetConnectionString("LegopiaConnection")
+            var connectionString = configuration.GetConnectionString("LegopiaDbConnection")
                 ?? throw new InvalidOperationException("Connection string not found");
             services.AddDbContext<LegopiaDbContext>(options => options.UseSqlServer(connectionString));
             return services;
