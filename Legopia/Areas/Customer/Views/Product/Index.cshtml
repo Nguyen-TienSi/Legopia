@@ -1,0 +1,13 @@
+﻿@model Legopia.Areas.Customer.Models.ProductIndexViewModel
+@{
+    ViewData["Title"] = "Products";
+}
+
+<div class="row">
+    <div class="col-md-3">
+        <partial name="~/Areas/Customer/Views/SidebarProductFilter/Index.cshtml" model="Model.SidebarFilter" />
+    </div>
+    <div class="col-md-9">
+        <!-- Main product content goes here (if any) -->
+    </div>
+</div>

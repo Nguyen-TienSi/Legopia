@@ -1,0 +1,11 @@
+﻿@model Legopia.Areas.Customer.Models.ProductIndexViewModel.SidebarProductFilterViewModel
+
+<div class="d-flex flex-column gap-0">
+    <partial name="~/Areas/Customer/Views/SidebarProductFilter/FilterSection/SelectedFilters.cshtml" model="@Model.SelectedFilters" />
+    <hr class="my-4" />
+    <partial name="~/Areas/Customer/Views/SidebarProductFilter/FilterSection/ShowInStockOnlyFilter.cshtml" model="@Model.InStock" />
+    <hr class="my-4" />
+    @await Component.InvokeAsync("FilterSection", new { title = "Product Type", filters = Model.ProductTypes })
+    <hr class="my-4" />
+    @await Component.InvokeAsync("FilterSection", new { title = "Price", filters = Model.PriceRanges })
+</div>

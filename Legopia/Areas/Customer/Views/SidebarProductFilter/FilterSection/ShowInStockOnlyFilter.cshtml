@@ -1,0 +1,8 @@
+﻿@model bool
+
+<div class="form-check">
+    <input class="form-check-input" type="checkbox" id="in-stock" name="in-stock" @(Model ? "checked" : "")>
+    <label class="form-check-label" for="in-stock">
+        Show In Stock Only
+    </label>
+</div>

@@ -1,0 +1,43 @@
+﻿@model FilterSectionModel
+
+<div>
+    <partial name="~/Areas/Customer/Views/SidebarProductFilter/FilterSection/FilterSectionHeader.cshtml" model="Model" />
+
+    <div class="collapse show" id="collapse-@Model.SectionKey">
+        <div class="d-flex flex-column gap-1">
+            @if (Model.Filters != null)
+            {
+                var filtersList = Model.Filters.ToList();
+
+                @for (int i = 0; i < Math.Min(filtersList.Count, 6); i++)
+                {
+                    <partial name="~/Areas/Customer/Views/SidebarProductFilter/FilterSection/FilterItem.cshtml" model="filtersList[i]" />
+                }
+
+                @if (filtersList.Count > 6)
+                {
+                    <div class="collapse" id="more-@Model.SectionKey">
+                        @for (int i = 6; i < filtersList.Count; i++)
+                        {
+                            <partial name="~/Areas/Customer/Views/SidebarProductFilter/FilterSection/FilterItem.cshtml" model="filtersList[i]" />
+                        }
+                    </div>
+                    <button class="btn btn-link btn-sm px-0 toggle-more" type="button" data-bs-toggle="collapse" data-bs-target="#more-@Model.SectionKey">
+                        + See More
+                    </button>
+                }
+            }
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll(".toggle-more").forEach(btn => {
+            btn.addEventListener("click", () => {
+                const text = btn.innerText.trim();
+                btn.innerText = text.startsWith("+") ? "- See Less" : "+ See More";
+            });
+        });
+    });
+</script>

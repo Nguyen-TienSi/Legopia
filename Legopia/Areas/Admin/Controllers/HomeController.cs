@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace Legopia.Areas.Amin.Controllers
+namespace Legopia.Areas.Admin.Controllers
 {
     [Area("Admin")]
     public class HomeController : Controller
