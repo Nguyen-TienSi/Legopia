@@ -1,0 +1,63 @@
+﻿@model IEnumerable<Legopia.Models.Entities.Product>
+
+@{
+    ViewData["Title"] = "Product Management";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2 class="mb-0">Product Management</h2>
+    <a href="@Url.Action("Create", "Product", new { area = "Admin" })" class="btn btn-success">
+        <i class="bi bi-plus-lg"></i> New Product
+    </a>
+</div>
+
+<table class="table table-striped table-bordered align-middle">
+    <thead class="table-light">
+        <tr>
+            <th>Id</th>
+            <th>Thumbnail</th>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Price</th>
+            <th>Discount</th>
+            <th>Stock</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var product in Model)
+    {
+        <tr>
+            <td>@product.Id</td>
+            <td>
+                @if (!string.IsNullOrEmpty(product.ThumbnailUrl))
+                {
+                    <img src="@product.ThumbnailUrl" alt="Thumbnail" style="height:40px;" />
+                }
+            </td>
+            <td>@product.ProductName</td>
+            <td>@product.ProductCategory?.CategoryName</td>
+            <td>@product.Price.ToString("C")</td>
+            <td>
+                @if (product.DiscountPercentage.HasValue && product.DiscountPercentage > 0)
+                {
+                    @($"{product.DiscountPercentage}%")
+                }
+                else if (product.DiscountPrice.HasValue)
+                {
+                    @product.DiscountPrice.Value.ToString("C")
+                }
+                else
+                {
+                    <span>-</span>
+                }
+            </td>
+            <td>@product.Stock</td>
+            <td>
+                <a href="@Url.Action("Edit", "Product", new { area = "Admin", id = product.Id })" class="btn btn-sm btn-primary">Edit</a>
+                <a href="@Url.Action("Delete", "Product", new { area = "Admin", id = product.Id })" class="btn btn-sm btn-danger">Delete</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

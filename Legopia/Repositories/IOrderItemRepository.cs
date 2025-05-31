@@ -1,6 +1,8 @@
-﻿namespace Legopia.Repositories
+﻿using Legopia.Models.Entities;
+
+namespace Legopia.Repositories
 {
-    public interface IOrderItemRepository
+    public interface IOrderItemRepository : IGenericRepository<OrderItem>
     {
     }
 }

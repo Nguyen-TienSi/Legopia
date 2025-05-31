@@ -2,13 +2,19 @@
 using Legopia.Models.Identity;
 using Microsoft.EntityFrameworkCore;
 
-namespace Legopia.Data
+namespace Legopia.Data.Context
 {
     public class LegopiaDbContext : DbContext
     {
         public LegopiaDbContext(DbContextOptions<LegopiaDbContext> options)
             : base(options)
         {
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(LegopiaDbContext).Assembly);
         }
 
         public DbSet<Address> Addresses { get; set; }

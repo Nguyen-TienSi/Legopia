@@ -1,0 +1,58 @@
+﻿@model IEnumerable<Legopia.Areas.Admin.Models.SidebarItemModel>
+
+<nav class="d-flex flex-column flex-shrink-0 p-3 bg-light border-end min-vh-100" style="width: 250px;">
+    <ul class="nav nav-pills flex-column mb-auto">
+        @foreach (var item in Model)
+        {
+            if (item.SubItems != null && item.SubItems.Any())
+            {
+                var collapseId = "collapse-" + item.Title.Replace(" ", "").ToLower();
+                <li>
+                    <a class="nav-link link-dark d-flex justify-content-between align-items-center"
+                       data-bs-toggle="collapse"
+                       href="#@collapseId"
+                       role="button"
+                       aria-expanded="false"
+                       aria-controls="@collapseId">
+                        <span>
+                            @if (!string.IsNullOrEmpty(item.Icon))
+                            {
+                                <i class="@item.Icon me-2"></i>
+                            }
+                            @item.Title
+                        </span>
+                        <i class="bi bi-chevron-down"></i>
+                    </a>
+                    <div class="collapse" id="@collapseId">
+                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small ms-4">
+                            @foreach (var sub in item.SubItems)
+                            {
+                                <li>
+                                    <a href="@sub.Url" class="nav-link link-dark">
+                                        @if (!string.IsNullOrEmpty(sub.Icon))
+                                        {
+                                            <i class="@sub.Icon me-2"></i>
+                                        }
+                                        @sub.Title
+                                    </a>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </li>
+            }
+            else
+            {
+                <li>
+                    <a href="@item.Url" class="nav-link link-dark">
+                        @if (!string.IsNullOrEmpty(item.Icon))
+                        {
+                            <i class="@item.Icon me-2"></i>
+                        }
+                        @item.Title
+                    </a>
+                </li>
+            }
+        }
+    </ul>
+</nav>

@@ -1,6 +1,8 @@
-﻿namespace Legopia.Repositories
+﻿using Legopia.Models.Entities;
+
+namespace Legopia.Repositories
 {
-    public interface ITagRepository
+    public interface ITagRepository : IGenericRepository<Tag>
     {
     }
 }

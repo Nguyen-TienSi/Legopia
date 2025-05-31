@@ -1,4 +1,4 @@
-﻿using Legopia.Data;
+﻿using Legopia.Data.Context;
 using Legopia.Repositories;
 using Legopia.Repositories.Implementors;
 using Legopia.Services;
@@ -13,6 +13,7 @@ namespace Legopia.Extensions
         {
             // Repository DI
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepositoryImpl<>));
+            services.AddScoped<IUnitOfWork, UnitOfWorkImpl>();
             services.AddScoped<ICartItemRepository, CartItemRepositoryImpl>();
             services.AddScoped<ICartRepository, CartRepositoryImpl>();
             services.AddScoped<ICouponRepository, CouponRepositoryImpl>();
@@ -49,6 +50,8 @@ namespace Legopia.Extensions
             var connectionString = configuration.GetConnectionString("LegopiaDbConnection")
                 ?? throw new InvalidOperationException("Connection string not found");
             services.AddDbContext<LegopiaDbContext>(options => options.UseSqlServer(connectionString));
+
+            services.AddScoped<DbContext>(provider => provider.GetRequiredService<LegopiaDbContext>());
             return services;
         }
     }

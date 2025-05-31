@@ -10,7 +10,7 @@ namespace Legopia.Models.Entities
     {
         [ForeignKey(nameof(Cart))]
         [Column("cart_id")]
-        public int? CartId { get; set; }
+        public string? CartId { get; set; }
         public Cart? Cart { get; set; }
         [ForeignKey(nameof(Product))]
         [Column("product_id")]

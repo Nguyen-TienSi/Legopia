@@ -1,6 +1,8 @@
-﻿namespace Legopia.Repositories
+﻿using Legopia.Models.Entities;
+
+namespace Legopia.Repositories
 {
-    public interface ICartItemRepository
+    public interface ICartItemRepository : IGenericRepository<CartItem>
     {
     }
 }
