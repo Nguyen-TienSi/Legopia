@@ -1,5 +1,4 @@
 ﻿using Legopia.Models.Entities;
-using Legopia.Data.Context;
 using Legopia.Repositories;
 
 namespace Legopia.Services.Implementors
@@ -9,9 +8,7 @@ namespace Legopia.Services.Implementors
         private readonly IProductRepository _productRepository;
         private readonly IUnitOfWork _unitOfWork;
 
-        public ProductServiceImpl(
-            IProductRepository productRepository, 
-            IUnitOfWork unitOfWork)
+        public ProductServiceImpl(IProductRepository productRepository, IUnitOfWork unitOfWork)
         {
             _productRepository = productRepository;
             _unitOfWork = unitOfWork;

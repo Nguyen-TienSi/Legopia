@@ -1,0 +1,27 @@
+﻿@model IEnumerable<Legopia.Models.Entities.PostCategory>
+
+@{
+    ViewData["Title"] = "Post Categories";
+}
+
+<h1>Post Categories</h1>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Category Name</th>
+            <th>Posts Count</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var category in Model)
+        {
+            <tr>
+                <td>@category.Id</td>
+                <td>@category.PostCategoryName</td>
+                <td>@(category.Posts?.Count ?? 0)</td>
+            </tr>
+        }
+    </tbody>
+</table>

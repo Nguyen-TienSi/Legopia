@@ -27,6 +27,7 @@ namespace Legopia.Extensions
             services.AddScoped<IProductReviewRepository, ProductReviewRepositoryImpl>();
             services.AddScoped<ITagRepository, TagRepositoryImpl>();
             services.AddScoped<IUserDetailsRepository, UserDetailsRepositoryImpl>();
+            services.AddScoped<IUserRoleRepository, UserRoleRepositoryImpl>();
             // Service DI
             services.AddScoped<ICartItemService, CartItemServiceImpl>();
             services.AddScoped<ICartService, CartServiceImpl>();
@@ -41,6 +42,7 @@ namespace Legopia.Extensions
             services.AddScoped<IProductReviewService, ProductReviewServiceImpl>();
             services.AddScoped<ITagService, TagServiceImpl>();
             services.AddScoped<IUserDetailsService, UserDetailsServiceImpl>();
+            services.AddScoped<IUserRoleService, UserRoleServiceImpl>();
 
             return services;
         }

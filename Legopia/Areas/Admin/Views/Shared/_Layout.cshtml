@@ -21,28 +21,45 @@
     @{
         var sidebarItems = new List<SidebarItemModel>
         {
-            new SidebarItemModel { Title = "Dashboard", Icon = "bi bi-house-door", Url = "/Admin" },
-            new SidebarItemModel
-            {
-                Title = "Users", Icon = "bi bi-people",
-                SubItems = new List<SidebarItemModel>
-                {
-                    new SidebarItemModel { Title = "All Users", Url = "/Admin/Users" },
-                    new SidebarItemModel { Title = "Roles", Url = "/Admin/Roles" }
-                }
-            },
-            new SidebarItemModel { Title = "Products", Icon = "bi bi-box-seam", Url = "/Admin/Products" },
-            new SidebarItemModel { Title = "Orders", Icon = "bi bi-receipt", Url = "/Admin/Orders" },
-            new SidebarItemModel { Title = "Posts", Icon = "bi bi-file-earmark-text", Url = "/Admin/Posts" },
-            new SidebarItemModel
-            {
-                Title = "Settings", Icon = "bi bi-gear",
-                SubItems = new List<SidebarItemModel>
-                {
-                    new SidebarItemModel { Title = "Site Settings", Url = "/Admin/Site" },
-                    new SidebarItemModel { Title = "Logs", Url = "/Admin/Logs" }
-                }
-            }
+        new SidebarItemModel { Title = "Dashboard", Icon = "bi bi-house-door", Url = "/Admin/Home" },
+        new SidebarItemModel
+        {
+        Title = "Users", Icon = "bi bi-people",
+        SubItems = new List<SidebarItemModel>
+        {
+        new SidebarItemModel { Title = "All Users", Url = "/Admin/Users" },
+        new SidebarItemModel { Title = "Roles", Url = "/Admin/Roles" }
+        }
+        },
+        new SidebarItemModel
+        {
+        Title = "Products", Icon = "bi bi-box-seam",
+        SubItems = new List<SidebarItemModel>
+        {
+        new SidebarItemModel { Title = "All Products", Url = "/Admin/Products" },
+        new SidebarItemModel { Title = "Product Category", Url = "/Admin/ProductCategories" },
+        new SidebarItemModel { Title = "Product Review", Url = "/Admin/ProductReviews" }
+        }
+        },
+        new SidebarItemModel { Title = "Orders", Icon = "bi bi-receipt", Url = "/Admin/Orders" },
+        new SidebarItemModel
+        {
+        Title = "Posts", Icon = "bi bi-file-earmark-text",
+        SubItems = new List<SidebarItemModel>
+        {
+        new SidebarItemModel { Title = "All Posts", Url = "/Admin/Posts" },
+        new SidebarItemModel { Title = "Post Category", Url = "/Admin/PostCategories" }
+        }
+        },
+        new SidebarItemModel
+        {
+        Title = "Settings", Icon = "bi bi-gear",
+        SubItems = new List<SidebarItemModel>
+        {
+        new SidebarItemModel { Title = "Site Settings", Url = "/Admin/Site" },
+        new SidebarItemModel { Title = "Logs", Url = "/Admin/Logs" }
+        }
+        }
         };
     }
     <div class="container-fluid">

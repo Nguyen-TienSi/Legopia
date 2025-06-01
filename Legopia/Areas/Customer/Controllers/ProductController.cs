@@ -1,4 +1,5 @@
 ﻿using Legopia.Areas.Customer.Models;
+using Legopia.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Legopia.Areas.Customer.Controllers
@@ -6,6 +7,13 @@ namespace Legopia.Areas.Customer.Controllers
     [Area("Customer")]
     public class ProductController : Controller
     {
+        private readonly IProductService _productService;
+
+        public ProductController(IProductService productService)
+        {
+            _productService = productService;
+        }
+
         public IActionResult Index()
         {
             var model = new ProductIndexViewModel
