@@ -1,51 +1,59 @@
-﻿@model Legopia.Models.Entities.Product
-
+﻿@model Legopia.Areas.Admin.Models.ProductCreateViewModel
 @{
     ViewData["Title"] = "Add New Product";
+    var images = ViewBag.Images as List<SelectListItem>;
 }
 
 <h2>Add New Product</h2>
 
-<form asp-action="Create" method="post">
+<form asp-action="Create" method="post" enctype="multipart/form-data">
     <div class="mb-3">
-        <label asp-for="ProductName" class="form-label"></label>
-        <input asp-for="ProductName" class="form-control" />
-        <span asp-validation-for="ProductName" class="text-danger"></span>
+        <label asp-for="Product.ProductName" class="form-label"></label>
+        <input asp-for="Product.ProductName" class="form-control" />
+        <span asp-validation-for="Product.ProductName" class="text-danger"></span>
     </div>
     <div class="mb-3">
-        <label asp-for="ShortDescription" class="form-label"></label>
-        <input asp-for="ShortDescription" class="form-control" />
-        <span asp-validation-for="ShortDescription" class="text-danger"></span>
+        <label asp-for="Product.ShortDescription" class="form-label"></label>
+        <input asp-for="Product.ShortDescription" class="form-control" />
+        <span asp-validation-for="Product.ShortDescription" class="text-danger"></span>
     </div>
     <div class="mb-3">
-        <label asp-for="Description" class="form-label"></label>
-        <textarea asp-for="Description" class="form-control"></textarea>
-        <span asp-validation-for="Description" class="text-danger"></span>
+        <label asp-for="Product.Description" class="form-label"></label>
+        <textarea asp-for="Product.Description" class="form-control"></textarea>
+        <span asp-validation-for="Product.Description" class="text-danger"></span>
     </div>
     <div class="mb-3">
-        <label asp-for="Price" class="form-label"></label>
-        <input asp-for="Price" class="form-control" />
-        <span asp-validation-for="Price" class="text-danger"></span>
+        <label asp-for="Product.Price" class="form-label"></label>
+        <input asp-for="Product.Price" class="form-control" />
+        <span asp-validation-for="Product.Price" class="text-danger"></span>
     </div>
     <div class="mb-3">
-        <label asp-for="DiscountPrice" class="form-label"></label>
-        <input asp-for="DiscountPrice" class="form-control" />
-        <span asp-validation-for="DiscountPrice" class="text-danger"></span>
+        <label asp-for="Product.DiscountPrice" class="form-label"></label>
+        <input asp-for="Product.DiscountPrice" class="form-control" />
+        <span asp-validation-for="Product.DiscountPrice" class="text-danger"></span>
     </div>
     <div class="mb-3">
-        <label asp-for="DiscountPercentage" class="form-label"></label>
-        <input asp-for="DiscountPercentage" class="form-control" />
-        <span asp-validation-for="DiscountPercentage" class="text-danger"></span>
+        <label asp-for="Product.DiscountPercentage" class="form-label"></label>
+        <input asp-for="Product.DiscountPercentage" class="form-control" />
+        <span asp-validation-for="Product.DiscountPercentage" class="text-danger"></span>
     </div>
+
     <div class="mb-3">
-        <label asp-for="ThumbnailUrl" class="form-label"></label>
-        <input asp-for="ThumbnailUrl" class="form-control" />
-        <span asp-validation-for="ThumbnailUrl" class="text-danger"></span>
+        <label class="form-label">Thumbnail Image</label>
+        <input asp-for="ThumbnailImageFile" type="file" name="ThumbnailImageFile" class="form-control mb-2" accept="image/*" />
+        <span class="text-danger"></span>
     </div>
+
     <div class="mb-3">
-        <label asp-for="Stock" class="form-label"></label>
-        <input asp-for="Stock" class="form-control" />
-        <span asp-validation-for="Stock" class="text-danger"></span>
+        <label class="form-label">Product Images</label>
+        <input asp-for="ProductImageFiles" type="file" name="ProductImageFiles" class="form-control" accept="image/*" multiple />
+        <span class="text-muted">You can select multiple images.</span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Product.Stock" class="form-label"></label>
+        <input asp-for="Product.Stock" class="form-control" />
+        <span asp-validation-for="Product.Stock" class="text-danger"></span>
     </div>
     <button type="submit" class="btn btn-success">Create</button>
     <a asp-action="Index" class="btn btn-secondary">Cancel</a>

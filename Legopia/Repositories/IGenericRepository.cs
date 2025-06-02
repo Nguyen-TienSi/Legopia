@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 
@@ -6,6 +7,8 @@ namespace Legopia.Repositories
 {
     public interface IGenericRepository<TEntity> where TEntity : class
     {
+        DbContext Context { get; }
+
         // Async methods
         Task<TEntity?> FindByIdAsync(object id);
         Task<IEnumerable<TEntity>> FindAllAsync();

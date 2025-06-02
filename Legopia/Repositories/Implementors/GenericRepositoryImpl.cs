@@ -18,6 +18,8 @@ namespace Legopia.Repositories.Implementors
             _dbSet = _context.Set<TEntity>();
         }
 
+        public DbContext Context => _context;
+
         // Async methods
         public async Task<TEntity?> FindByIdAsync(object id)
         {

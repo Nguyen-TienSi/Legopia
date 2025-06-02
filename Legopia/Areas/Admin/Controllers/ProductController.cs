@@ -2,6 +2,10 @@
 using Legopia.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Linq;
+using Legopia.Areas.Admin.Models;
+using System.Collections.Generic;
 
 namespace Legopia.Areas.Admin.Controllers
 {
@@ -9,10 +13,12 @@ namespace Legopia.Areas.Admin.Controllers
     public class ProductController : Controller
     {
         private readonly IProductService _productService;
+        private readonly IProductImageService _productImageService;
 
-        public ProductController(IProductService productService)
+        public ProductController(IProductService productService, IProductImageService productImageService)
         {
             _productService = productService;
+            _productImageService = productImageService;
         }
 
         [Route("Admin/Products")]
@@ -25,17 +31,21 @@ namespace Legopia.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            return View(new Product());
+            var viewModel = new ProductCreateViewModel();
+            return View(viewModel);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Product product)
+        public IActionResult Create(ProductCreateViewModel model)
         {
             if (!ModelState.IsValid)
-                return View(product);
+            {
+                return View(model);
+            }
 
-            _productService.Add(product);
+            _productService.Add(model);
+
             return RedirectToAction(nameof(Index));
         }
     }

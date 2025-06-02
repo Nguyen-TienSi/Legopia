@@ -4,6 +4,7 @@ using Legopia.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Legopia.Migrations
 {
     [DbContext(typeof(LegopiaDbContext))]
-    partial class LegopiaDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250602170204_ModifyProductThumnailImage")]
+    partial class ModifyProductThumnailImage
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -678,7 +681,7 @@ namespace Legopia.Migrations
                         .HasForeignKey("ProductCategoryId");
 
                     b.HasOne("Legopia.Models.Entities.ProductImage", "ThumbnailImageFile")
-                        .WithMany("Products")
+                        .WithMany()
                         .HasForeignKey("ThumbnailImageId");
 
                     b.Navigation("ProductCategory");
@@ -794,8 +797,6 @@ namespace Legopia.Migrations
             modelBuilder.Entity("Legopia.Models.Entities.ProductImage", b =>
                 {
                     b.Navigation("ProductImageJoinings");
-
-                    b.Navigation("Products");
                 });
 
             modelBuilder.Entity("Legopia.Models.Entities.Tag", b =>

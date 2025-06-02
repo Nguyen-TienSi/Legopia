@@ -1,5 +1,8 @@
-﻿using Legopia.Services;
+﻿using Legopia.Models.Entities;
+using Legopia.Services;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Legopia.Areas.Admin.Controllers
 {
@@ -14,9 +17,11 @@ namespace Legopia.Areas.Admin.Controllers
             _postService = postService;
         }
 
-        public IActionResult Index()
+        [HttpGet("")]
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var posts = await _postService.GetAllAsync();
+            return View(posts);
         }
     }
 }

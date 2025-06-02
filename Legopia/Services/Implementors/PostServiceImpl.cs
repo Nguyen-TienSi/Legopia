@@ -1,4 +1,7 @@
-﻿using Legopia.Repositories;
+﻿using Legopia.Models.Entities;
+using Legopia.Repositories;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Legopia.Services.Implementors
 {
@@ -11,6 +14,11 @@ namespace Legopia.Services.Implementors
         {
             _postRepository = postRepository;
             _unitOfWork = unitOfWork;
+        }
+
+        public async Task<IEnumerable<Post>> GetAllAsync()
+        {
+            return await _postRepository.FindAllAsync();
         }
     }
 }

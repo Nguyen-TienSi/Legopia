@@ -1,9 +1,13 @@
-﻿using Legopia.Services;
+﻿using Legopia.Models.Entities;
+using Legopia.Services;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Legopia.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Route("Admin/Orders")]
     public class OrderController : Controller
     {
         private readonly IOrderDetailsService _orderDetailsService;
@@ -13,9 +17,11 @@ namespace Legopia.Areas.Admin.Controllers
             _orderDetailsService = orderDetailsService;
         }
 
-        public IActionResult Index()
+        [HttpGet("")]
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var orders = await _orderDetailsService.GetAllAsync();
+            return View(orders);
         }
     }
 }

@@ -25,39 +25,39 @@
         </tr>
     </thead>
     <tbody>
-    @foreach (var product in Model)
-    {
-        <tr>
-            <td>@product.Id</td>
-            <td>
-                @if (!string.IsNullOrEmpty(product.ThumbnailUrl))
-                {
-                    <img src="@product.ThumbnailUrl" alt="Thumbnail" style="height:40px;" />
-                }
-            </td>
-            <td>@product.ProductName</td>
-            <td>@product.ProductCategory?.CategoryName</td>
-            <td>@product.Price.ToString("C")</td>
-            <td>
-                @if (product.DiscountPercentage.HasValue && product.DiscountPercentage > 0)
-                {
-                    @($"{product.DiscountPercentage}%")
-                }
-                else if (product.DiscountPrice.HasValue)
-                {
-                    @product.DiscountPrice.Value.ToString("C")
-                }
-                else
-                {
-                    <span>-</span>
-                }
-            </td>
-            <td>@product.Stock</td>
-            <td>
-                <a href="@Url.Action("Edit", "Product", new { area = "Admin", id = product.Id })" class="btn btn-sm btn-primary">Edit</a>
-                <a href="@Url.Action("Delete", "Product", new { area = "Admin", id = product.Id })" class="btn btn-sm btn-danger">Delete</a>
-            </td>
-        </tr>
-    }
+        @foreach (var product in Model)
+        {
+            <tr>
+                <td>@product.Id</td>
+                <td>
+                    @if (product.ThumbnailImageId.HasValue)
+                    {
+                        <img src="@Url.Action("Get", "ProductImage", new { area = "Admin", id = product.ThumbnailImageId })" alt="Thumbnail" style="height:40px;" />
+                    }
+                </td>
+                <td>@product.ProductName</td>
+                <td>@product.ProductCategory?.CategoryName</td>
+                <td>@product.Price.ToString("C")</td>
+                <td>
+                    @if (product.DiscountPercentage.HasValue && product.DiscountPercentage > 0)
+                    {
+                        @($"{product.DiscountPercentage}%")
+                    }
+                    else if (product.DiscountPrice.HasValue)
+                    {
+                        @product.DiscountPrice.Value.ToString("C")
+                    }
+                    else
+                    {
+                        <span>-</span>
+                    }
+                </td>
+                <td>@product.Stock</td>
+                <td>
+                    <a href="@Url.Action("Edit", "Product", new { area = "Admin", id = product.Id })" class="btn btn-sm btn-primary">Edit</a>
+                    <a href="@Url.Action("Delete", "Product", new { area = "Admin", id = product.Id })" class="btn btn-sm btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

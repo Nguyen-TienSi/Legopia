@@ -20,10 +20,13 @@ namespace Legopia.Models.Entities
         public decimal? DiscountPrice { get; set; }
         [Column("discount_percentage")]
         public float? DiscountPercentage { get; set; }
-        [Column("thumbnail_url")]
-        public string ThumbnailUrl { get; set; } = string.Empty;
         [Column("stock")]
         public int Stock { get; set; }
+        // One to one relationship
+        [ForeignKey(nameof(ThumbnailImage))]
+        [Column("thumbnail_image_id")]
+        public int? ThumbnailImageId { get; set; }
+        public ProductImage? ThumbnailImage { get; set; }
         // One to many relationship
         public ICollection<ProductReview> Reviews { get; set; } = [];
         public ICollection<CartItem> CartItems { get; set; } = [];
