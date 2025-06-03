@@ -1,8 +1,10 @@
 ﻿using Legopia.Data.Context;
+using Legopia.Models.Identity;
 using Legopia.Repositories;
 using Legopia.Repositories.Implementors;
 using Legopia.Services;
 using Legopia.Services.Implementors;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace Legopia.Extensions
@@ -54,6 +56,15 @@ namespace Legopia.Extensions
             services.AddDbContext<LegopiaDbContext>(options => options.UseSqlServer(connectionString));
 
             services.AddScoped<DbContext>(provider => provider.GetRequiredService<LegopiaDbContext>());
+            return services;
+        }
+
+        public static IServiceCollection AddIdentity(this IServiceCollection services)
+        {
+            services.AddIdentity<UserDetails, UserRole>()
+                .AddEntityFrameworkStores<LegopiaDbContext>()
+                .AddDefaultTokenProviders();
+
             return services;
         }
     }

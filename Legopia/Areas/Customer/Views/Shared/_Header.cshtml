@@ -65,8 +65,21 @@
                                 <i class="bi bi-person-circle me-1 fs-5"></i> Hello, @User.Identity.Name!
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="userDropdown">
-                                <li><a class="dropdown-item" href="/Account/Profile"><i class="bi bi-person-lines-fill me-1 fs-5"></i> Profile</a></li>
-                                <li><a class="dropdown-item" href="/Account/Logout"><i class="bi bi-box-arrow-right me-1 fs-5"></i> Logout</a></li>
+                                <li>
+                                    <a asp-area="" asp-controller="Account" asp-action="Profile" class="dropdown-item">
+                                        <i class="bi bi-person-lines-fill me-1 fs-5"></i> Profile
+                                    </a>
+                                </li>
+                                <li>
+                                    <form asp-area="" asp-controller="Account" asp-action="Logout" method="post" class="w-100">
+                                        @Html.AntiForgeryToken()
+                                        <button type="submit"
+                                                class="dropdown-item text-start text-danger fw-semibold"
+                                                style="--bs-dropdown-link-hover-bg: #f8d7da;">
+                                            <i class="bi bi-box-arrow-right me-1 fs-5"></i> Logout
+                                        </button>
+                                    </form>
+                                </li>
                             </ul>
                         </div>
                     </li>
@@ -79,10 +92,14 @@
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
                             <li>
-                                <a class="dropdown-item" href="/Account/Login"><i class="bi bi-box-arrow-in-right me-1 fs-5"></i> Login</a>
+                                <a asp-area="" asp-controller="Account" asp-action="Login" class="dropdown-item">
+                                    <i class="bi bi-box-arrow-in-right me-1 fs-5"></i> Login
+                                </a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="/Account/Register"><i class="bi bi-person-plus me-1 fs-5"></i> Register</a>
+                                <a asp-area="" asp-controller="Account" asp-action="RegisterCredentials" class="dropdown-item">
+                                    <i class="bi bi-person-plus me-1 fs-5"></i> Register
+                                </a>
                             </li>
                         </ul>
                     </li>
@@ -109,7 +126,6 @@
         const clearSearch = document.getElementById('clearSearch');
         const searchInput = document.getElementById('searchInput');
         const searchGroup = document.getElementById('searchGroup');
-
 
         // Show search form
         searchIcon.addEventListener('click', function () {

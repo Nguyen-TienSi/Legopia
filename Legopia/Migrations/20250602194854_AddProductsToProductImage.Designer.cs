@@ -457,7 +457,7 @@ namespace Legopia.Migrations
                     b.ToTable("addresses");
                 });
 
-            modelBuilder.Entity("Legopia.Models.Identity.UserDetails", b =>
+            modelBuilder.Entity("Legopia.Models.Identity.Users", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -559,13 +559,13 @@ namespace Legopia.Migrations
 
             modelBuilder.Entity("Legopia.Models.Entities.Cart", b =>
                 {
-                    b.HasOne("Legopia.Models.Identity.UserDetails", "UserDetails")
+                    b.HasOne("Legopia.Models.Identity.Users", "Users")
                         .WithOne("Cart")
                         .HasForeignKey("Legopia.Models.Entities.Cart", "UserDetailsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("UserDetails");
+                    b.Navigation("Users");
                 });
 
             modelBuilder.Entity("Legopia.Models.Entities.CartItem", b =>
@@ -612,13 +612,13 @@ namespace Legopia.Migrations
                         .WithOne("OrderDetails")
                         .HasForeignKey("Legopia.Models.Entities.OrderDetails", "AddressId");
 
-                    b.HasOne("Legopia.Models.Identity.UserDetails", "UserDetails")
+                    b.HasOne("Legopia.Models.Identity.Users", "Users")
                         .WithMany("OrderDetails")
                         .HasForeignKey("UserDetailsId");
 
                     b.Navigation("Address");
 
-                    b.Navigation("UserDetails");
+                    b.Navigation("Users");
                 });
 
             modelBuilder.Entity("Legopia.Models.Entities.OrderItem", b =>
@@ -642,7 +642,7 @@ namespace Legopia.Migrations
 
             modelBuilder.Entity("Legopia.Models.Entities.Post", b =>
                 {
-                    b.HasOne("Legopia.Models.Identity.UserDetails", "Author")
+                    b.HasOne("Legopia.Models.Identity.Users", "Author")
                         .WithMany("Posts")
                         .HasForeignKey("AuthorId");
 
@@ -714,27 +714,27 @@ namespace Legopia.Migrations
                         .WithMany("Reviews")
                         .HasForeignKey("ProductId");
 
-                    b.HasOne("Legopia.Models.Identity.UserDetails", "UserDetails")
+                    b.HasOne("Legopia.Models.Identity.Users", "Users")
                         .WithMany("ProductReviews")
                         .HasForeignKey("UserDetailsId");
 
                     b.Navigation("Product");
 
-                    b.Navigation("UserDetails");
+                    b.Navigation("Users");
                 });
 
             modelBuilder.Entity("Legopia.Models.Identity.Address", b =>
                 {
-                    b.HasOne("Legopia.Models.Identity.UserDetails", "UserDetails")
+                    b.HasOne("Legopia.Models.Identity.Users", "Users")
                         .WithOne("Address")
                         .HasForeignKey("Legopia.Models.Identity.Address", "UserDetailsId");
 
-                    b.Navigation("UserDetails");
+                    b.Navigation("Users");
                 });
 
             modelBuilder.Entity("Legopia.Models.Identity.UserRoleDetailsJoining", b =>
                 {
-                    b.HasOne("Legopia.Models.Identity.UserDetails", "UserDetails")
+                    b.HasOne("Legopia.Models.Identity.Users", "Users")
                         .WithMany()
                         .HasForeignKey("UserDetailsId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -746,7 +746,7 @@ namespace Legopia.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("UserDetails");
+                    b.Navigation("Users");
 
                     b.Navigation("UserRole");
                 });
@@ -811,7 +811,7 @@ namespace Legopia.Migrations
                     b.Navigation("OrderDetails");
                 });
 
-            modelBuilder.Entity("Legopia.Models.Identity.UserDetails", b =>
+            modelBuilder.Entity("Legopia.Models.Identity.Users", b =>
                 {
                     b.Navigation("Address");
 

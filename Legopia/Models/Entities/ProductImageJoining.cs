@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Legopia.Models.Entities
 {
-    [Table("product_image_joinings")]
+    [Table("product_image_joining")]
     [PrimaryKey(nameof(ProductId), nameof(ProductImageId))]
     public class ProductImageJoining
     {

@@ -1,13 +1,13 @@
 ﻿using Legopia.Models.Entities;
 using Legopia.Models.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace Legopia.Data.Context
 {
-    public class LegopiaDbContext : DbContext
+    public class LegopiaDbContext : IdentityDbContext<UserDetails, UserRole, string>
     {
-        public LegopiaDbContext(DbContextOptions<LegopiaDbContext> options)
-            : base(options)
+        public LegopiaDbContext(DbContextOptions<LegopiaDbContext> options) : base(options)
         {
         }
 
@@ -18,9 +18,6 @@ namespace Legopia.Data.Context
         }
 
         public DbSet<Address> Addresses { get; set; }
-        public DbSet<UserDetails> UserDetails { get; set; }
-        public DbSet<UserRole> UserRoles { get; set; }
-        public DbSet<UserRoleDetailsJoining> UserRoleDetailsJoinings { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<ProductCategory> ProductCategories { get; set; }
         public DbSet<ProductImage> ProductImages { get; set; }

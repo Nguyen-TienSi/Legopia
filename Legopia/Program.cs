@@ -1,10 +1,13 @@
 using Legopia.Extensions;
+using Legopia.Data.Seeding;
+using Legopia.Models.Identity;
+using Microsoft.AspNetCore.Identity;
 
 namespace Legopia
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
 
@@ -13,8 +16,20 @@ namespace Legopia
 
             builder.Services.AddSqlServer(builder.Configuration);
             builder.Services.AddApplicationServices();
+            builder.Services.AddIdentity();
+
+            builder.Services.AddDataProtection();
 
             var app = builder.Build();
+
+            // Seed admin user and role
+            using (var scope = app.Services.CreateScope())
+            {
+                var services = scope.ServiceProvider;
+                var userManager = services.GetRequiredService<UserManager<UserDetails>>();
+                var roleManager = services.GetRequiredService<RoleManager<UserRole>>();
+                await DatabaseSeeder.SeedAdminAsync(userManager, roleManager);
+            }
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())

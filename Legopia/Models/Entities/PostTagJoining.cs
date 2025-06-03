@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Legopia.Models.Entities
 {
-    [Table("post_tags")]
+    [Table("post_tag_joining")]
     [PrimaryKey(nameof(PostId), nameof(TagId))]
     public class PostTagJoining
     {
