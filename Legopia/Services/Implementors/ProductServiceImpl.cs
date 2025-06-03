@@ -26,6 +26,11 @@ namespace Legopia.Services.Implementors
             return _productRepository.FindAll();
         }
 
+        public Product? GetById(int id)
+        {
+            return _productRepository.FindById(id);
+        }
+
         public void Add(ProductCreateViewModel viewModel)
         {
             var product = viewModel.Product;

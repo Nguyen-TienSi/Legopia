@@ -48,5 +48,15 @@ namespace Legopia.Areas.Admin.Controllers
 
             return RedirectToAction(nameof(Index));
         }
+
+        [HttpGet]
+        public IActionResult Detail(int id)
+        {
+            var product = _productService.GetById(id);
+            if (product == null)
+                return NotFound();
+
+            return View(product);
+        }
     }
 }

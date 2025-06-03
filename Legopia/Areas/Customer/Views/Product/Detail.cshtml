@@ -1,5 +1,104 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model Legopia.Models.Entities.Product
+
 @{
+    ViewData["Title"] = Model.ProductName;
 }
+
+<div class="container py-4">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="bg-light rounded p-3 mb-3 text-center">
+                @if (Model.ThumbnailImageId.HasValue)
+                {
+                    <img src="@Url.Action("Get", "ProductImage", new { area = "Customer", id = Model.ThumbnailImageId })"
+                         alt="@Model.ProductName"
+                         class="img-fluid rounded"
+                         style="max-height: 350px; object-fit: contain;" />
+                }
+                else
+                {
+                    <span class="text-muted">No Image</span>
+                }
+            </div>
+            @if (Model.ProductImageJoining != null && Model.ProductImageJoining.Any())
+            {
+                <div class="d-flex flex-wrap gap-2 justify-content-center">
+                    @foreach (var joining in Model.ProductImageJoining)
+                    {
+                        if (joining.ProductImageId.HasValue)
+                        {
+                            <img src="@Url.Action("Get", "ProductImage", new { area = "Customer", id = joining.ProductImageId })"
+                                 alt="Product Image"
+                                 class="img-thumbnail"
+                                 style="width: 64px; height: 64px; object-fit: cover;" />
+                        }
+                    }
+                </div>
+            }
+        </div>
+        <div class="col-md-6">
+            <h2>@Model.ProductName</h2>
+            <div class="mb-2 text-muted">
+                @Model.ProductCategory?.CategoryName
+            </div>
+            <div class="mb-3">
+                @if (Model.DiscountPercentage.HasValue && Model.DiscountPercentage > 0)
+                {
+                    <span class="fs-4 fw-bold text-danger">@Model.FinalPrice.ToString("C")</span>
+                    <span class="text-muted text-decoration-line-through ms-2">@Model.Price.ToString("C")</span>
+                }
+                else if (Model.DiscountPrice.HasValue)
+                {
+                    <span class="fs-4 fw-bold text-danger">@Model.DiscountPrice.Value.ToString("C")</span>
+                    <span class="text-muted text-decoration-line-through ms-2">@Model.Price.ToString("C")</span>
+                }
+                else
+                {
+                    <span class="fs-4 fw-bold">@Model.Price.ToString("C")</span>
+                }
+            </div>
+            <div class="mb-3">
+                <span class="badge bg-secondary">@((Model.Stock > 0) ? "In Stock" : "Out of Stock")</span>
+            </div>
+            <p class="lead">@Model.ShortDescription</p>
+            <hr />
+            <div>
+                <h5>Description</h5>
+                <p>@Model.Description</p>
+            </div>
+            <hr />
+            <div>
+                <h5>Reviews</h5>
+                @if (Model.Reviews != null && Model.Reviews.Any())
+                {
+                    @foreach (var review in Model.Reviews)
+                    {
+                        <div class="mb-2">
+                            <span class="fw-bold">@(review.UserDetails?.FirstName ?? "Anonymous")</span>
+                            <span class="text-warning">
+                                @for (int i = 0; i < review.Rating; i++)
+                                {
+                                    <i class="bi bi-star-fill"></i>
+                                }
+                                @for (int i = review.Rating; i < 5; i++)
+                                {
+                                    <i class="bi bi-star"></i>
+                                }
+                            </span>
+                            <div>@review.Comment</div>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <span class="text-muted">No reviews yet.</span>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="mt-4">
+        <a href="@Url.Action("Index", "Product", new { area = "Customer" })" class="btn btn-outline-secondary">
+            <i class="bi bi-arrow-left"></i> Back to Products
+        </a>
+    </div>
+</div>

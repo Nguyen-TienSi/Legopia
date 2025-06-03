@@ -7,6 +7,7 @@ namespace Legopia.Services
     public interface IProductService
     {
         IEnumerable<Product> GetAll();
+        Product? GetById(int id);
         void Add(ProductCreateViewModel viewModel);
     }
 }

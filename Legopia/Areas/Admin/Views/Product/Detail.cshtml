@@ -1,5 +1,48 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model Legopia.Models.Entities.Product
+
 @{
+    ViewData["Title"] = "Product Details";
 }
+
+<h2>Product Details</h2>
+
+<div class="card mb-3" style="max-width: 600px;">
+    <div class="row g-0">
+        <div class="col-md-4">
+            @if (Model.ThumbnailImageId.HasValue)
+            {
+                <img src="@Url.Action("Get", "ProductImage", new { area = "Admin", id = Model.ThumbnailImageId })" class="img-fluid rounded-start" alt="Thumbnail" />
+            }
+            else
+            {
+                <span class="text-muted">No Image</span>
+            }
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <h5 class="card-title">@Model.ProductName</h5>
+                <p class="card-text"><strong>Category:</strong> @Model.ProductCategory?.CategoryName</p>
+                <p class="card-text"><strong>Description:</strong> @Model.Description</p>
+                <p class="card-text"><strong>Short Description:</strong> @Model.ShortDescription</p>
+                <p class="card-text"><strong>Price:</strong> @Model.Price.ToString("C")</p>
+                <p class="card-text"><strong>Discount:</strong>
+                    @if (Model.DiscountPercentage.HasValue && Model.DiscountPercentage > 0)
+                    {
+                        @($"{Model.DiscountPercentage}%")
+                    }
+                    else if (Model.DiscountPrice.HasValue)
+                    {
+                        @Model.DiscountPrice.Value.ToString("C")
+                    }
+                    else
+                    {
+                        <span>-</span>
+                    }
+                </p>
+                <p class="card-text"><strong>Stock:</strong> @Model.Stock</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<a href="@Url.Action("Index", "Product", new { area = "Admin" })" class="btn btn-secondary">Back to List</a>

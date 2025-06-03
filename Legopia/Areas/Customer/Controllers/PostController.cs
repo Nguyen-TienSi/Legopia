@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Legopia.Areas.Customer.Controllers
 {
     [Area("Customer")]
+    [Route("Customer/Posts")]
     public class PostController : Controller
     {
         private readonly IPostService _postService;

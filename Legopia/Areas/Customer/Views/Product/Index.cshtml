@@ -8,6 +8,22 @@
         <partial name="~/Areas/Customer/Views/SidebarProductFilter/Index.cshtml" model="Model.SidebarFilter" />
     </div>
     <div class="col-md-9">
-        <!-- Main product content goes here (if any) -->
+        <div class="row">
+            @if (Model.Products != null)
+            {
+                foreach (var product in Model.Products)
+                {
+                    <div class="col-6 col-md-4 col-lg-3 mb-4 d-flex">
+                        @await Html.PartialAsync("Item", product)
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="col-12">
+                    <span>No products found.</span>
+                </div>
+            }
+        </div>
     </div>
 </div>

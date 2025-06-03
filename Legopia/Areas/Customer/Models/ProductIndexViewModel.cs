@@ -1,3 +1,4 @@
+using Legopia.Models.Entities;
 using System.Collections.Generic;
 
 namespace Legopia.Areas.Customer.Models
@@ -5,6 +6,7 @@ namespace Legopia.Areas.Customer.Models
     public class ProductIndexViewModel
     {
         public SidebarProductFilterViewModel SidebarFilter { get; set; } = new SidebarProductFilterViewModel();
+        public IEnumerable<Product> Products { get; set; } = [];
 
         public class SidebarProductFilterViewModel
         {
