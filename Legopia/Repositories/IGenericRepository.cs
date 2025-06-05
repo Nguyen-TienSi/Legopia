@@ -9,6 +9,8 @@ namespace Legopia.Repositories
     {
         DbContext Context { get; }
 
+        DbSet<TEntity> DbSet { get; }
+
         // Async methods
         Task<TEntity?> FindByIdAsync(object id);
         Task<IEnumerable<TEntity>> FindAllAsync();

@@ -1,5 +1,6 @@
 ﻿using Legopia.Services;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace Legopia.Areas.Customer.Controllers
 {
@@ -15,7 +16,14 @@ namespace Legopia.Areas.Customer.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (userId == null)
+            {
+                return RedirectToAction("Login", "Account", new { area = "" });
+            }
+
+            var cart = _cartService.GetCartByUserId(userId);
+            return View(cart);
         }
     }
 }

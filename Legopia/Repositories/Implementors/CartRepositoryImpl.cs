@@ -8,5 +8,10 @@ namespace Legopia.Repositories.Implementors
         public CartRepositoryImpl(DbContext context) : base(context)
         {
         }
+
+        public Cart? GetCartByUserId(string userId)
+        {
+            return DbSet.FirstOrDefault(c => c.UserDetailsId == userId);
+        }
     }
 }
